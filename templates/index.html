@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home/index.css' %}">
+    <title>Web News</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            position: relative;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .nav-links a:hover {
+            color: #ff6347; /* Tomato color on hover */
+        }
+
+        .dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #444;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .dropdown a {
+            padding: 12px 16px;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #555; /* Darker color on hover */
+        }
+
+        .nav-links li:hover .dropdown {
+            display: block; /* Show dropdown on hover */
+        }
+
+        .news-container {
+            padding-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 0;
+            background-color: #f1f1f1;
+        }
+
+        .news {
+            flex-basis: 30%;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+
+
+        .more-content {
+            display: none; /* Initially hidden */
+            margin-top: 10px;
+        }
+
+        .view-more {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .a {
+        text-decoration: none;}
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">NewsDaily</h1>
+            <ul class="nav-links">
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+                <li>
+                    <a href="{% url 'homepage' %}">category +</a>
+                    <div class="dropdown">
+
+                        {% for c in categories %}
+                        <a href=" {% url 'select_by_category' c.id %} ">{{ c }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li><a href="#world">Other</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="news-container">
+        {% for i in news %}
+            <div class="news">
+                <a class="more" href="{% url 'news_detail' i.id %}">
+                    {% if i.image %}
+                        <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                    {% else %}
+                        <img src="{% static 'path/to/default-image.jpg' %}" alt="Default Image">
+                    {% endif %}
+                    <h2>{{ i.title }}</h2> <br> <hr>
+                <a/>
+                <p class="summary">{{ i.content|truncatewords:20 }}</p> <!-- Show a short summary -->
+                <br>
+                <h5> {{ i.created_at }}</h5>
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        function toggleContent(button) {
+            const moreContent = button.previousElementSibling;
+            if (moreContent.style.display === "block") {
+                moreContent.style.display = "none";
+                button.textContent = "View More";
+            } else {
+                moreContent.style.display = "block";
+                button.textContent = "View Less";
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,83 @@
+# Python-specific files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.cover
+*.log
+*.pot
+*.mo
+*.db
+*.sqlite3
+*.env
+*.venv
+*.envrc
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django-specific files
+db.sqlite3
+/media/
+/staticfiles/
+/static/
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# If you're using PostgreSQL, MySQL, etc., you might want to ignore
+*.pgsql
+*.mysql
+
+# local environment settings
+.venv
+.venv.local
+.venv.development
+.venv.production
+.venv.staging
+
+# Ignore migration files (if you don't want to version them)
+# Uncomment if you want to exclude migrations
+# **/migrations/
+
+# MacOS-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+
+# PyCharm project files
+.idea/
+
+# VSCode project files
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Byte-compiled and other temporary files
+*.swp
+*.swo
+*.bak
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Testing files
+.tox/
+.nox/
+
+# Pipenv files
+Pipfile.lock
+
+# Node modules (if using frontend libraries)
+node_modules/
+
+# Static and media files (if using Django's `collectstatic`)
+/staticfiles/
+/mediafiles/
